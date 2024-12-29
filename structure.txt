@@ -1,0 +1,39 @@
+.
+├── HELP.md
+├── build.gradle.kts
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── gradlew
+├── gradlew.bat
+├── settings.gradle.kts
+├── src
+│   └── main
+│       ├── kotlin
+│       │   └── com
+│       │       └── blog
+│       │           └── blog_service
+│       │               ├── BlogServiceApplication.kt
+│       │               └── product
+│       │                   ├── domain
+│       │                   │   ├── Product.kt
+│       │                   │   ├── ProductConstants.kt
+│       │                   │   └── utils
+│       │                   │       └── extensions.kt
+│       │                   ├── graphql
+│       │                   │   └── controllers
+│       │                   │       └── ProductsController.kt
+│       │                   ├── storage
+│       │                   │   ├── ProductRepository.kt
+│       │                   │   ├── ProductStorage.kt
+│       │                   │   └── ProductStorageImpl.kt
+│       │                   └── usecase
+│       │                       └── GetProducts.kt
+│       └── resources
+│           ├── application.properties
+│           └── graphql
+│               └── schema.graphqls
+└── structure.txt
+
+18 directories, 19 files

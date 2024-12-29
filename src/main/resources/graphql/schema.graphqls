@@ -1,0 +1,61 @@
+type Query {
+    products(productFilter: ProductFilter!, pageNumber: Int!, pageSize: Int!): ProductsResponse!
+    categories(categoryFilter: CategoryFilter!): [Category!]!
+}
+
+input ProductFilter {
+    ids: [ID!]
+    categoryIds: [ID!]
+    text: String
+    statuses: [ProductStatus!]!
+}
+
+input CategoryFilter {
+    ids: [ID!]
+    text: String
+    statuses: [CategoryStatus!]!
+}
+
+type ProductsResponse {
+    products: [Product!]!
+    pageInfo: PageInfo!
+}
+
+type PageInfo {
+    totalPages: Int!
+    currentPage: Int!
+    pageSize: Int!
+    totalElements: Int!
+}
+
+type Product {
+    id: ID!
+    productId: ID!
+    title: String!
+    price: Float!
+    medias: [String!]!
+    thumbnailUrl: String!
+    description: String!
+    categoryIds: [ID!]!
+    status: ProductStatus!
+}
+
+enum ProductStatus {
+    PUBLISHED
+    DRAFT
+    INACTIVE
+}
+
+type Category {
+    categoryId: ID!
+    name: String!
+    description: String!
+    imageUrl: String!
+    status: CategoryStatus!
+}
+
+enum CategoryStatus {
+    PUBLISHED
+    DRAFT
+    INACTIVE
+}
