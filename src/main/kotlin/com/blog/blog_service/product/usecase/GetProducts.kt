@@ -50,9 +50,7 @@ private fun DomainProduct.toGraphqlProduct(): GraphqlProduct {
         title = title,
         price = price,
         medias = medias,
-        thumbnailUrl = thumbnailUrl,
         description = description,
-        categoryIds = categoryIds.map { it.toString() },
         status = status.toGraphqlProductStatus()
     )
 }

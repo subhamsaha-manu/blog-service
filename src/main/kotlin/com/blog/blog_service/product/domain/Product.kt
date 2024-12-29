@@ -15,10 +15,7 @@ data class Product(
     val title: String,
     val description: String,
     val price: Double,
-    val categoryIds: List<UUID> = emptyList(),
     val medias: List<String> = emptyList(),
-    val thumbnailUrl: String,
-    val inventoryId: UUID? = null,
     val status: ProductStatus,
     @CreatedDate
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")

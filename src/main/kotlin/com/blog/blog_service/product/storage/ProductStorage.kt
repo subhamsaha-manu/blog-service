@@ -5,4 +5,5 @@ import org.blog.graphql.types.ProductFilter
 
 interface ProductStorage {
     suspend fun getProducts(productFilter: ProductFilter): List<Product>
+    suspend fun addProduct(product: Product): Product
 }

@@ -1,19 +1,15 @@
 type Query {
     products(productFilter: ProductFilter!, pageNumber: Int!, pageSize: Int!): ProductsResponse!
-    categories(categoryFilter: CategoryFilter!): [Category!]!
+}
+
+type Mutation {
+    addProduct(addProductInput: AddProductInput!): Boolean!
 }
 
 input ProductFilter {
     ids: [ID!]
-    categoryIds: [ID!]
     text: String
     statuses: [ProductStatus!]!
-}
-
-input CategoryFilter {
-    ids: [ID!]
-    text: String
-    statuses: [CategoryStatus!]!
 }
 
 type ProductsResponse {
@@ -32,11 +28,9 @@ type Product {
     id: ID!
     productId: ID!
     title: String!
+    description: String!
     price: Float!
     medias: [String!]!
-    thumbnailUrl: String!
-    description: String!
-    categoryIds: [ID!]!
     status: ProductStatus!
 }
 
@@ -46,16 +40,11 @@ enum ProductStatus {
     INACTIVE
 }
 
-type Category {
-    categoryId: ID!
-    name: String!
+input AddProductInput {
+    productId: ID!
+    title: String!
     description: String!
-    imageUrl: String!
-    status: CategoryStatus!
-}
-
-enum CategoryStatus {
-    PUBLISHED
-    DRAFT
-    INACTIVE
+    price: Float!
+    medias: [String!]!
+    status: ProductStatus!
 }
