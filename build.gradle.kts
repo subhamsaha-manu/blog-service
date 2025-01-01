@@ -9,6 +9,7 @@ plugins {
 	kotlin("jvm") version "1.9.24"
 	kotlin("plugin.spring") version "1.9.24"
 	id("io.github.kobylynskyi.graphql.codegen") version "5.8.0"
+	kotlin("plugin.serialization") version "1.9.24"
 }
 
 group = "com.blog"
@@ -31,6 +32,8 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+	implementation("com.squareup.okhttp3:okhttp:4.11.0")
 }
 
 kotlin {

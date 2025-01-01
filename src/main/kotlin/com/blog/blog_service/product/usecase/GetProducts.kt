@@ -1,5 +1,6 @@
 package com.blog.blog_service.product.usecase
 
+import com.blog.blog_service.product.domain.utils.fetchImages
 import com.blog.blog_service.product.domain.utils.toGraphqlProductStatus
 import com.blog.blog_service.product.storage.ProductStorage
 import org.blog.graphql.types.PageInfo
@@ -16,7 +17,8 @@ class GetProducts(
 ) {
 
     suspend operator fun invoke(productFilter: ProductFilter, pageNumber: Int, pageSize: Int): ProductsResponse {
-        val products = productStorage.getProducts(productFilter).map { it.toGraphqlProduct() }
+        val images = fetchImages()
+        val products = productStorage.getProducts(productFilter).map { it.toGraphqlProduct(images) }
 
         val page = extractPage(products, pageNumber, pageSize)
 
@@ -43,13 +45,13 @@ class GetProducts(
     }
 }
 
-private fun DomainProduct.toGraphqlProduct(): GraphqlProduct {
+private fun DomainProduct.toGraphqlProduct(images: List<String>): GraphqlProduct {
     return GraphqlProduct(
         id = id.toString(),
         productId = productId.toString(),
         title = title,
         price = price,
-        medias = medias,
+        medias = listOf(images.random()),
         description = description,
         status = status.toGraphqlProductStatus()
     )

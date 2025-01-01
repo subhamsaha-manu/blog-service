@@ -2,8 +2,6 @@ package com.blog.blog_service.product.storage
 
 import com.blog.blog_service.product.domain.Product
 import com.blog.blog_service.product.domain.ProductConstants
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import org.blog.graphql.types.ProductFilter
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
@@ -41,8 +39,6 @@ class ProductStorageImpl(
     }
 
     override suspend fun addProduct(product: Product): Product {
-        return withContext(Dispatchers.IO) {
-            productRepository.save(product)
-        }
+        return productRepository.save(product)
     }
 }
