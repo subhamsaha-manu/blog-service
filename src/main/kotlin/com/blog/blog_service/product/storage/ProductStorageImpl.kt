@@ -2,7 +2,7 @@ package com.blog.blog_service.product.storage
 
 import com.blog.blog_service.product.domain.Product
 import com.blog.blog_service.product.domain.ProductConstants
-import org.blog.graphql.types.ProductFilter
+import com.blog.blog_service.product.usecase.inputs.ProductFilterUsecase
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
@@ -14,7 +14,7 @@ class ProductStorageImpl(
     private val mongoTemplate: MongoTemplate,
 ) : ProductStorage {
 
-    override suspend fun getProducts(productFilter: ProductFilter): List<Product> {
+    override suspend fun getProducts(productFilter: ProductFilterUsecase): List<Product> {
         val query = Query()
 
         with(productFilter) {

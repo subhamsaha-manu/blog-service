@@ -1,5 +1,7 @@
 package com.blog.blog_service.product.graphql.controllers
 
+import com.blog.blog_service.product.graphql.inputs.toAddProductInput
+import com.blog.blog_service.product.graphql.inputs.toGetProductInput
 import com.blog.blog_service.product.storage.ProductStorage
 import com.blog.blog_service.product.usecase.AddProduct
 import com.blog.blog_service.product.usecase.GetProducts
@@ -26,11 +28,11 @@ class ProductsController(
         @Argument pageNumber: Int,
         @Argument pageSize: Int
     ): ProductsResponse {
-        return productsQuery(productFilter, pageNumber, pageSize)
+        return productsQuery(productFilter.toGetProductInput(), pageNumber, pageSize)
     }
 
     @MutationMapping
     suspend fun addProduct(@Argument addProductInput: AddProductInput): Boolean {
-        return addProductMutation(addProductInput)
+        return addProductMutation(addProductInput.toAddProductInput())
     }
 }

@@ -3,20 +3,20 @@ package com.blog.blog_service.product.usecase
 import com.blog.blog_service.product.domain.utils.fetchImages
 import com.blog.blog_service.product.domain.utils.toGraphqlProductStatus
 import com.blog.blog_service.product.storage.ProductStorage
+import com.blog.blog_service.product.usecase.inputs.ProductFilterUsecase
 import org.blog.graphql.types.PageInfo
-import org.blog.graphql.types.Product as GraphqlProduct
-import com.blog.blog_service.product.domain.Product as DomainProduct
-import org.blog.graphql.types.ProductFilter
 import org.blog.graphql.types.ProductsResponse
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
+import com.blog.blog_service.product.domain.Product as DomainProduct
+import org.blog.graphql.types.Product as GraphqlProduct
 
 class GetProducts(
     private val productStorage: ProductStorage
 ) {
 
-    suspend operator fun invoke(productFilter: ProductFilter, pageNumber: Int, pageSize: Int): ProductsResponse {
+    suspend operator fun invoke(productFilter: ProductFilterUsecase, pageNumber: Int, pageSize: Int): ProductsResponse {
         val images = fetchImages()
         val products = productStorage.getProducts(productFilter).map { it.toGraphqlProduct(images) }
 
